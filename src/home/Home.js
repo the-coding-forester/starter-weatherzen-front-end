@@ -14,18 +14,18 @@ function Home() {
     return () => abortController.abort();
   }, []);
 
-  // useEffect(() => {
-  //   const abortController = new AbortController();
-  //   (async () => {
-  //     try {
-  //       const response = await listObservations(abortController.signal);
-  //       setObservations(response);
-  //     } catch (setError) {
-
-  //     }
-  //   })()
-  //   return () => abortController.abort();
-  // }, []);
+  useEffect(() => {
+    const abortController = new AbortController();
+    (async () => {
+      try {
+        const response = await listObservations(abortController.signal);
+        setObservations(response);
+      } catch (error) {
+        setError(error)
+      }
+    })()
+    return () => abortController.abort();
+  }, []);
 
   const tableRows = observations.map((observation) => (
     <tr key={observation.observation_id}>

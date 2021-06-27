@@ -24,7 +24,7 @@ function Home() {
       <th scope="row">{observation.observation_id}</th>
       <td>{observation.latitude}</td>
       <td>{observation.longitude}</td>
-      <td>{observation.sky_condition}</td>
+      <td>{observation.sky_condition}</td>git
       <td>{observation.created_at}</td>
     </tr>
   ));

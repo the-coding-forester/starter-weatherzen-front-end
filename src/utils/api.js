@@ -64,3 +64,7 @@ async function fetchJson(url, options) {
     }
   }
 }
+
+export async function listObservations(signal) {
+  return observations;
+}

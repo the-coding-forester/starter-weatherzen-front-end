@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createObservation } from "../utils/api";
+import ErrorAlert from "../layout/ErrorAlert";
 
 function ObservationCreate() {
   const history = useHistory();
@@ -11,14 +12,20 @@ function ObservationCreate() {
     sky_condition: "",
   });
 
+  const [error, setError] = useState(null);
+
   const cancelHandler = () => {
     history.push('/');
   }
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    await createObservation(observation);
-    history.push('/');
+    try {
+      await createObservation(observation);
+      history.push('/');
+    } catch (error) {
+      setError(error);
+    }
   }
 
   const changeHandler = async ({ target: { name, value } }) => {
@@ -31,6 +38,7 @@ function ObservationCreate() {
   return (
     <main>
       <h1 className="mb-3">Create Observation</h1>
+      <ErrorAlert error={error} />
       <form onSubmit={submitHandler} className="mb-4">
         <div className="row mb-3">
           <div className="col-6 form-group">

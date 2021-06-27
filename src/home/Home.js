@@ -8,14 +8,6 @@ function Home() {
 
   useEffect(() => {
     const abortController = new AbortController();
-    listObservations(abortController.signal)
-      .then(setObservations)
-      .catch(setError);
-    return () => abortController.abort();
-  }, []);
-
-  useEffect(() => {
-    const abortController = new AbortController();
     (async () => {
       try {
         const response = await listObservations(abortController.signal);
